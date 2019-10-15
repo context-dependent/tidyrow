@@ -13,9 +13,9 @@
 #' @examples
 row_map_at <- function(.tbl, .colname, .vars, .fun, ...) {
 
-  .colname <- enquo(.colname)
+  .colname <- rlang::enquo(.colname)
 
-  coldata <- purrr::pmap(select(.tbl, !!! .vars), .fun, ...)
+  coldata <- purrr::pmap(dplyr::select(.tbl, !!! .vars), .fun, ...)
 
   coldata_lengths <- purrr::map_dbl(coldata, length)
 
@@ -23,9 +23,10 @@ row_map_at <- function(.tbl, .colname, .vars, .fun, ...) {
     coldata <- unlist(coldata)
   }
 
-  res <- .tbl %>%
+  res <-
 
-    mutate(
+    dplyr::mutate(
+      .tbl,
       !!.colname := coldata
     )
 
@@ -123,9 +124,12 @@ utils <- list(
 
 )
 
-tidy_print <- function(.tbl = quo(.data)) {
+tidy_print <- function(.tbl, .vars) {
 
-  print(.tbl)
+  .vars <- dplyr:::check_dot_cols(.vars, NULL)
+
+
+  print(.vars)
 
   res <- 1
 
