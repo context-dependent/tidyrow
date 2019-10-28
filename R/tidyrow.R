@@ -70,15 +70,20 @@ row_sum_at <- function(.tbl, .colname, .vars, ...) {
 #' @export
 #'
 #' @examples
-row_mean_at <- function(.tbl, .colname, .vars, ...) {
+row_mean_at <- function(.tbl, .colname, .vars, na.rm = FALSE) {
 
   colname <- rlang::enquo(.colname)
 
-  res <- row_map_at(.tbl, !! colname, .vars, mean, ...)
+  res <- row_map_at(
+    .tbl, !! colname, .vars,
+    ~ mean(unlist(list(...)), na.rm = na.rm)
+  )
 
   res
 
 }
+
+
 
 #' Concatenate selected columns rowwise and store the result in a
 #' new column in the dataframe
