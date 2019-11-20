@@ -1,11 +1,12 @@
 Package: tidyrow
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Pipeable rowwise iteration
+Version: 0.1.1
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: There are lots of these little packages, but I don't especially like any of them. 
+    I've put this together to make it as straightforward as possible to sum and average rows
+    without subsetting the data frame
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

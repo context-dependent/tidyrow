@@ -16,7 +16,7 @@ row_concatenate_at(.tbl, .colname, .vars, sep = ", ", ...)
 
 \item{sep}{Separator for concatenation, defaults to ', '}
 
-\item{...}{Additional arguments to mean (e.g. na.rm = TRUE)}
+\item{...}{Additional arguments to str_c}
 }
 \description{
 Concatenate selected columns rowwise and store the result in a

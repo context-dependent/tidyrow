@@ -3,4 +3,5 @@
 export(row_concatenate_at)
 export(row_map_at)
 export(row_mean_at)
+export(row_simple_scale)
 export(row_sum_at)

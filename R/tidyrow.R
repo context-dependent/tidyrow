@@ -108,6 +108,46 @@ row_concatenate_at <- function(.tbl, .colname, .vars, sep = ", ", ...) {
 
 }
 
+#' Get a simple average scale score for a set of factor variables
+#'
+#' @param .tbl
+#' @param .colname
+#' @param .vars
+#' @param .rev
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+row_simple_scale <- function(.tbl, .colname, .vars, .rev, ...) {
+
+
+  colname = rlang::enquo(.colname)
+
+  coldata <- .tbl %>%
+    mutate_at(.rev, list(fct_rev))
+
+  coldata <- coldata %>%
+    mutate_at(.vars, list(as.numeric))
+
+  coldata <- coldata %>%
+    row_sum_at(total, .vars, na.rm = TRUE)
+
+  coldata <- coldata %>%
+    row_map_at(items, .vars, ~ sum(!is.na(unlist(list(...)))))
+
+  res <- .tbl %>%
+    mutate(
+      !! colname := coldata$total / coldata$items
+    )
+
+  res
+
+
+}
+
+
 utils <- list(
 
 

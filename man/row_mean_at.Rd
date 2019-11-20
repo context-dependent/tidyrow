@@ -5,7 +5,7 @@
 \title{Average tidyselected columns rowwise and store the result as a
 column in the dataframe}
 \usage{
-row_mean_at(.tbl, .colname, .vars, ...)
+row_mean_at(.tbl, .colname, .vars, na.rm = FALSE)
 }
 \arguments{
 \item{.tbl}{A dataframe or tibble}
